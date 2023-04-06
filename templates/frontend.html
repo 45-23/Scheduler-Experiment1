@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+	<h2>Select event date and time</h2>
+
+	<form action=" http://127.0.0.1:5000/submit_event" method="post">
+		<label for="fname">Event name:</label>
+		<input type="text" id="event name" name="event name">
+	  
+		<label for="event date">Event date:</label>
+		<input type="date" id="event date" name="event date">
+	  
+		<label for="event time">Event time:</label>
+		<input type="time" id="event time" name="event time">
+	  
+		<input type="submit" id="submit event" name="submit event" value="Submit">
+	</form>
+
+	<ol>
+	{% for event in events %}
+		<li>{{event}}</li>
+	{% endfor %}
+	</ol>
+
+</body>
+</html>
