@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for, make_response, jsonify
 
 import sqlite3
 
@@ -10,6 +10,21 @@ cursor = connect.cursor()
 cursor.execute('SELECT id, name, date, time FROM events')
 events = cursor.fetchall()
 #events = []
+
+@app.route('/home')
+def index():
+	return render_template("test.html")
+
+@app.route('/api/eventData', methods=['post', 'get'])
+def json_data():
+	
+	req = request.get_json()
+
+	print(req)
+
+	res = make_response(jsonify({"message": "JSON received"}), 200)
+
+	return res
 
 @app.route('/')
 def home():
