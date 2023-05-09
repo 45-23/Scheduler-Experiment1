@@ -19,7 +19,20 @@
 
 	<ol>
 	{% for event in events %}
-		<li>{{event}}</li>
+		{% set value = loop.index %}
+		<li>
+		{% set upd = 'http://127.0.0.1:5000/edit_event/' ~ value %}
+		{% set del = 'http://127.0.0.1:5000/delete_event/' ~ value %}
+		{{ event }}
+		
+		<form action="{{upd}}" id = "form">
+			<button type="submit">Edit</button>
+		</form>
+		
+		<form action="{{del}}" id = "form">
+			<button type="submit">Delete</button>
+		</form>
+		</li>
 	{% endfor %}
 	</ol>
 
