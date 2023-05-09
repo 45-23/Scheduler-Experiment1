@@ -102,18 +102,14 @@ function saveEvent() {
             title: eventTitleInput.value,
         });
 
-        /*fetch('http://127.0.0.1:5000/api/eventData'), {
-            method: 'POST',
-            headers: {
+        fetch(`${window.origin}/api/eventData`, {
+            method: "POST",
+            credentials: "include",
+            headers: new Headers({
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify('events')
-            .then(res => {
-                return res.json()
-            })
-            .then(data => console.log(data))
-            .catch(error => console.log('ERROR'))
-        } */
+            }),
+            body: JSON.stringify(events)
+        })
 
 
         //const formatjson = '{"date": ' + clicked + ', "title": ' + eventTitleInput.value + '}';
