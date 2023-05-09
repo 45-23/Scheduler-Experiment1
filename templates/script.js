@@ -8,6 +8,7 @@ const deleteEventModal = document.getElementById('deleteEventModal');
 const backDrop = document.getElementById('modalBackDrop');
 const eventTitleInput = document.getElementById('eventTitleInput');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+//const data_url = {{ url_for("")}}
 
 function openModal(date) {
     clicked = date;
@@ -100,6 +101,29 @@ function saveEvent() {
             date: clicked,
             title: eventTitleInput.value,
         });
+
+        /*fetch('http://127.0.0.1:5000/api/eventData'), {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify('events')
+            .then(res => {
+                return res.json()
+            })
+            .then(data => console.log(data))
+            .catch(error => console.log('ERROR'))
+        } */
+
+
+        //const formatjson = '{"date": ' + clicked + ', "title": ' + eventTitleInput.value + '}';
+        //data.append("date", clicked);
+        //data.append("title", eventTitleInput.value);
+        //for (const value of data.values()) {
+        //    console.log(obj);
+        //}
+        //console.log(formatjson);
+        //console.log(JSON.stringify(events));
 
         localStorage.setItem('events', JSON.stringify(events));
         closeModal();
