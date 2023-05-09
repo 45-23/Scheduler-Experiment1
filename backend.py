@@ -11,7 +11,7 @@ cursor = connect.cursor()
 cursor.execute('SELECT id, name, date, time FROM events')
 events = cursor.fetchall()
 event_data = None
-json_formatted_event_str = None
+json_events = None
 #events = []
 
 @app.route('/home')
@@ -27,8 +27,8 @@ def json_data():
 
 	#event_data = json.loads(req)
 	
-	json_formatted_event_str = json.dumps(req, indent=2)
-	print(json_formatted_event_str)
+	json_events = json.dumps(req, indent=2)
+	print(json_events)
 	res = make_response(jsonify({"message": "JSON received"}), 200)
 
 	return req
