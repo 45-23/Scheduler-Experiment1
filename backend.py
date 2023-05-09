@@ -24,7 +24,7 @@ def json_data():
 
 	res = make_response(jsonify({"message": "JSON received"}), 200)
 
-	return res
+	return req
 
 @app.route('/')
 def home():

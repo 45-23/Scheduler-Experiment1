@@ -102,6 +102,7 @@ function saveEvent() {
             title: eventTitleInput.value,
         });
 
+        // CODE TO UPDATE THE BACKEND
         fetch(`${window.origin}/api/eventData`, {
             method: "POST",
             credentials: "include",
@@ -109,6 +110,17 @@ function saveEvent() {
                 'Content-Type': 'application/json'
             }),
             body: JSON.stringify(events)
+        })
+        .then(function (response){
+            
+            if(response.status !== 200) {
+            console.log(`Response Status was not 200: ${response.status}`);
+            return ;
+        }
+        
+            response.json().then(function (data) {
+                console.log(data)
+            })
         })
 
 
@@ -131,6 +143,28 @@ function saveEvent() {
 
 function deleteEvent() {
     events = events.filter (e => e.date !== clicked);
+
+            // CODE TO UPDATE THE BACKEND
+            fetch(`${window.origin}/api/eventData`, {
+                method: "POST",
+                credentials: "include",
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                }),
+                body: JSON.stringify(events)
+            })
+            .then(function (response){
+                
+                if(response.status !== 200) {
+                console.log(`Response Status was not 200: ${response.status}`);
+                return ;
+            }
+            
+                response.json().then(function (data) {
+                    console.log(data)
+                })
+            })
+
     localStorage.setItem('events', JSON.stringify(events));
     closeModal();
 }
