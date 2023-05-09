@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template, redirect, url_for, make_response, jsonify
+import json
 
 import sqlite3
 
@@ -9,6 +10,8 @@ connect.execute('CREATE TABLE IF NOT EXISTS events (id INT, name VARCHAR, date D
 cursor = connect.cursor()
 cursor.execute('SELECT id, name, date, time FROM events')
 events = cursor.fetchall()
+event_data = None
+json_formatted_event_str = None
 #events = []
 
 @app.route('/home')
@@ -20,8 +23,12 @@ def json_data():
 	
 	req = request.get_json()
 
-	print(req)
+	#print(req)
 
+	#event_data = json.loads(req)
+	
+	json_formatted_event_str = json.dumps(req, indent=2)
+	print(json_formatted_event_str)
 	res = make_response(jsonify({"message": "JSON received"}), 200)
 
 	return req
