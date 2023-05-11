@@ -18,7 +18,7 @@ function openModal(date) {
     const eventForDay = events.find(e => e.date === clicked);
 
     if(eventForDay) {
-        document.getElementById('eventText').innerText = eventForDay.title;
+        document.getElementById('eventText').innerText = eventForDay.title + " From " + eventForDay.timeStart + " to " + eventForDay.timeEnd;
         deleteEventModal.style.display = 'block';
     }
     else {
