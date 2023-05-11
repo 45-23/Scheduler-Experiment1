@@ -50,6 +50,6 @@ jobs:
           sudo systemctl stop flasktest3.service
           sudo systemctl start flasktest3.service
           sudo systemctl enable flasktest3.service
-          curl localost:8000
+          curl localhost:8000
           sudo systemctl restart nginx
           sudo systemctl enable nginx
