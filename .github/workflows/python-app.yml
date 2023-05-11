@@ -42,7 +42,6 @@ jobs:
       with:
         # Host for SSH connection
         host: ec2-3-142-114-49.us-east-2.compute.amazonaws.com
-        port: 22
         # Username for SSH connection
         username: ubuntu
         # Content of  the private key. Eg content of ~/.ssh/id_rsa
