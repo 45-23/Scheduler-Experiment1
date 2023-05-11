@@ -7,6 +7,8 @@ const newEventModal = document.getElementById('newEventModal');
 const deleteEventModal = document.getElementById('deleteEventModal');
 const backDrop = document.getElementById('modalBackDrop');
 const eventTitleInput = document.getElementById('eventTitleInput');
+const eventTimeStartInput = document.getElementById('eventTimeStartInput');
+const eventTimeEndInput = document.getElementById('eventTimeEndInput');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 //const data_url = {{ url_for("")}}
 
@@ -88,6 +90,8 @@ function closeModal() {
     deleteEventModal.style.display = 'none';
     backDrop.style.display = 'none';
     eventTitleInput.value = '';
+    eventTimeStartInput.value = '';
+    eventTimeEndInput.value = '';
     clicked = null;
     load();
 
@@ -99,8 +103,16 @@ function saveEvent() {
 
         events.push({
             date: clicked,
+            timeStart: eventTimeStartInput.value,
+            timeEnd: eventTimeEndInput.value,
             title: eventTitleInput.value,
         });
+
+        const jsonSingleEvent = {
+            date: clicked,
+            timeStart: eventTimeStartInput.value,
+            timeEnd: eventTimeEndInput.value,
+            title: eventTitleInput.value,};
 
         // CODE TO UPDATE THE BACKEND
         fetch(`${window.origin}/api/eventData`, {
@@ -109,7 +121,7 @@ function saveEvent() {
             headers: new Headers({
                 'Content-Type': 'application/json'
             }),
-            body: JSON.stringify(events)
+            body: JSON.stringify(jsonSingleEvent)
         })
         .then(function (response){
             

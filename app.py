@@ -27,7 +27,9 @@ def json_data():
 
 	#event_data = json.loads(req)
 	
-	json_events = json.dumps(req, indent=2)
+	json_events = json.dumps(req)
+	json_events = json_events.strip("[]")
+	json_events = json_events.replace('"', '')
 	print(json_events)
 	res = make_response(jsonify({"message": "JSON received"}), 200)
 
