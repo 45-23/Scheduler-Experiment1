@@ -44,9 +44,12 @@ jobs:
         port: 22
         script: |
           cd flasktest3/Scheduler-Experiment1/
+          source venv/bin/activate
           git pull
           sudo systemctl daemon-reload
-          sudo systemctl restart flasktest3
-          sudo systemctl enable flasktest3
+          sudo systemctl stop flasktest3.service
+          sudo systemctl start flasktest3.service
+          sudo systemctl enable flasktest3.service
+          curl localost:8000
           sudo systemctl restart nginx
           sudo systemctl enable nginx
